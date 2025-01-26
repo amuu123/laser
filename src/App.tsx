@@ -47,12 +47,39 @@ function HomePage() {
       
       <section className="hero">
         <div className="hero-content">
-          <h1>Advanced Laser Hair Removal & Skin Rejuvenation</h1>
-          <p>Experience the latest in laser technology for permanent hair reduction and skin rejuvenation treatments, delivered by certified professionals.</p>
+          <h1>Transform Your Beauty Journey</h1>
+          <p>Advanced aesthetic treatments tailored to enhance your natural beauty</p>
           <div className="hero-buttons">
-            <Link to="/services" className="cta-button">View Services</Link>
-            <Link to="/book" className="cta-button secondary">Book Now</Link>
+            <Link to="/book" className="cta-button">Book Now</Link>
+            <Link to="/services" className="secondary-button">View Services</Link>
           </div>
+        </div>
+      </section>
+
+      <section className="services-showcase">
+        <div className="services-grid" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', flexDirection: 'row' }}>
+          <div className="service-item">
+            <i className="fas fa-bolt"></i>
+            <div className="service-text">Laser Hair Removal</div>
+          </div>
+          <div className="service-item">
+            <i className="fas fa-spray-can"></i>
+            <div className="service-text">Hydrofacial</div>
+          </div>
+          <div className="service-item">
+            <i className="fas fa-spa"></i>
+            <div className="service-text">Massage</div>
+          </div>
+          <div className="service-item">
+            <i className="fas fa-eraser"></i>
+            <div className="service-text">Tattoo Removal</div>
+          </div>
+          <Link to="/services" className="view-all-button">
+            <div className="service-item">
+              <i className="fas fa-chevron-right"></i>
+              <div className="service-text">View All</div>
+            </div>
+          </Link>
         </div>
       </section>
 
@@ -101,27 +128,29 @@ function HomePage() {
             <div className="contact-info">
               <div className="contact-item">
                 <i className="fas fa-phone"></i>
-                <h3>Phone</h3>
-                <p>+1 (555) 123-4567</p>
-                <p>Monday - Saturday: 9:00 AM - 7:00 PM</p>
+                <h3>Contact</h3>
+                <p>Phone: 07442 193764</p>
+                <p>Email: dalaserclinic@gmail.com</p>
               </div>
               <div className="contact-item">
                 <i className="fas fa-map-marker-alt"></i>
                 <h3>Location</h3>
-                <p>123 Laser Clinic Drive</p>
-                <p>Suite 200</p>
-                <p>Toronto, ON M5V 2T6</p>
+                <p>239 Lyndon Road</p>
+                <p>Solihull</p>
+                <p>B92 7QP</p>
               </div>
               <div className="contact-item">
-                <i className="fas fa-envelope"></i>
-                <h3>Email</h3>
-                <p>info@dalaserclinic.com</p>
+                <i className="fas fa-clock"></i>
+                <h3>Timings</h3>
+                <p>Monday – Friday: 09:00 - 12:00, 14:00 - 18:00</p>
+                <p>Saturday: 09:00 - 12:00, 14:00 - 17:00</p>
+                <p>Sunday: Closed</p>
               </div>
             </div>
             <div className="contact-map">
               <iframe 
                 title="DA Laser Clinic Location Map"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2887.2685189356225!2d-79.3866!3d43.6532!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDPCsDM5JzExLjUiTiA3OcKwMjMnMTEuOCJX!5e0!3m2!1sen!2sca!4v1625161234567!5m2!1sen!2sca"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5783.6054338578415!2d-1.7966417113864361!3d52.44823059961083!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4870bba2c24a4c53%3A0xd284abbf33a3bf6a!2sLaser%20Clinic!5e0!3m2!1sen!2suk!4v1737896856648!5m2!1sen!2suk"
                 style={{ border: 0 }}
                 allowFullScreen={true}
                 loading="lazy"
