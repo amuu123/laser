@@ -120,6 +120,7 @@ function HomePage() {
             </div>
             <div className="contact-map">
               <iframe 
+                title="DA Laser Clinic Location Map"
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2887.2685189356225!2d-79.3866!3d43.6532!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDPCsDM5JzExLjUiTiA3OcKwMjMnMTEuOCJX!5e0!3m2!1sen!2sca!4v1625161234567!5m2!1sen!2sca"
                 style={{ border: 0 }}
                 allowFullScreen={true}
