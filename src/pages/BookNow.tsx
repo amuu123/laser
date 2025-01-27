@@ -20,6 +20,11 @@ const BookNow = () => {
   });
 
   const [selectedTreatments, setSelectedTreatments] = useState<string[]>([]);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<{
+    type: 'success' | 'error' | null;
+    message: string;
+  }>({ type: null, message: '' });
 
   const treatments: Treatment[] = [
     { id: 'lhr-full-body', name: 'Full Body Laser Hair Removal', category: 'Laser Hair Removal' },
@@ -35,10 +40,20 @@ const BookNow = () => {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
+    
+    if (name === 'phone') {
+      // Only allow digits
+      const numbersOnly = value.replace(/\D/g, '');
+      setFormData(prev => ({
+        ...prev,
+        [name]: numbersOnly
+      }));
+    } else {
+      setFormData(prev => ({
+        ...prev,
+        [name]: value
+      }));
+    }
   };
 
   const handleTreatmentToggle = (treatmentId: string) => {
@@ -50,16 +65,64 @@ const BookNow = () => {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Here you would typically send the form data to your backend
-    console.log({
-      ...formData,
-      treatments: selectedTreatments.map(id => 
+    setIsSubmitting(true);
+    setSubmitStatus({ type: null, message: '' });
+
+    try {
+      const selectedTreatmentNames = selectedTreatments.map(id => 
         treatments.find(t => t.id === id)?.name
-      )
-    });
-    // Add your form submission logic here
+      ).filter(name => name !== undefined) as string[];
+
+      if (selectedTreatmentNames.length === 0) {
+        setSubmitStatus({
+          type: 'error',
+          message: 'Please select at least one treatment'
+        });
+        return;
+      }
+
+      const response = await fetch('https://sendbookingemail-ic5jdcj5sa-uc.a.run.app', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...formData,
+          treatments: selectedTreatmentNames
+        })
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setSubmitStatus({
+          type: 'success',
+          message: 'Booking request sent successfully! We will contact you shortly.'
+        });
+        // Reset form
+        setFormData({
+          firstName: '',
+          lastName: '',
+          email: '',
+          phone: '',
+          preferredDate: '',
+          preferredTime: '',
+          message: '',
+        });
+        setSelectedTreatments([]);
+      } else {
+        throw new Error(data.message || 'Failed to send booking request');
+      }
+    } catch (error) {
+      setSubmitStatus({
+        type: 'error',
+        message: error instanceof Error ? error.message : 'Failed to send booking request. Please try again.'
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -129,6 +192,8 @@ const BookNow = () => {
                   name="phone"
                   value={formData.phone}
                   onChange={handleInputChange}
+                  pattern="[0-9]{9,}"
+                  title="Enter a correct phone number"
                   required
                 />
               </div>
@@ -140,6 +205,7 @@ const BookNow = () => {
                   name="preferredDate"
                   value={formData.preferredDate}
                   onChange={handleInputChange}
+                  min={new Date().toISOString().split('T')[0]}
                   required
                 />
               </div>
@@ -167,7 +233,19 @@ const BookNow = () => {
             </div>
           </div>
 
-          <button type="submit" className="submit-button">Book Appointment</button>
+          <button 
+            type="submit" 
+            className="submit-button" 
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? 'Sending...' : 'Book Appointment'}
+          </button>
+
+          {submitStatus.type && (
+            <div className={`submit-status ${submitStatus.type}`}>
+              {submitStatus.message}
+            </div>
+          )}
         </form>
       </div>
     </div>

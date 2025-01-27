@@ -1,0 +1,446 @@
+/* Treatments Page Styles */
+.treatments-page {
+  padding-top: 80px;
+  background: var(--light-bg);
+  min-height: 100vh;
+}
+
+.treatments-page .page-hero {
+  position: relative;
+  background: linear-gradient(135deg, var(--primary-color) 0%, #2d2f66 100%);
+  color: var(--white);
+  padding: 6rem 0;
+  text-align: center;
+  overflow: hidden;
+  margin-bottom: 3rem;
+}
+
+.treatments-page .page-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.2) 100%);
+  z-index: 1;
+}
+
+.treatments-page .hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('../../public/images/background.png') center/cover no-repeat;
+  opacity: 0.15;
+  z-index: 0;
+}
+
+.treatments-page .hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.treatments-page .page-hero h1 {
+  font-size: 3.5rem;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.treatments-page .page-hero p {
+  font-size: 1.25rem;
+  opacity: 0.95;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Tabs Styling */
+.treatments-page .tabs-container {
+  margin: 0 auto 4rem;
+  max-width: 1200px;
+  padding: 0 2rem;
+}
+
+.treatments-page .tabs {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+  position: relative;
+}
+
+.treatments-page .tabs::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: rgba(0,0,0,0.1);
+}
+
+.treatments-page .tab {
+  padding: 1rem 2.5rem;
+  background: transparent;
+  border: none;
+  border-bottom: 3px solid transparent;
+  color: var(--primary-color);
+  font-size: 1.15rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.treatments-page .tab:hover {
+  color: var(--secondary-color);
+}
+
+.treatments-page .tab.active {
+  border-bottom-color: var(--accent-color);
+  color: var(--secondary-color);
+}
+
+.treatments-page .tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--accent-color);
+  border-radius: 3px 3px 0 0;
+}
+
+/* Treatments Tab Content */
+.treatments-page .treatments-content {
+  padding: 2rem 0;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.treatments-page .treatment-category {
+  margin-bottom: 5rem;
+}
+
+.treatments-page .treatment-category:last-child {
+  margin-bottom: 0;
+}
+
+.treatments-page .treatment-category h2 {
+  text-align: center;
+  color: var(--primary-color);
+  font-size: 2.5rem;
+  margin-bottom: 3rem;
+  position: relative;
+  padding-bottom: 1.5rem;
+  font-weight: 700;
+}
+
+.treatments-page .treatment-category h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: var(--accent-color);
+  border-radius: 2px;
+}
+
+.treatments-page .treatments-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2.5rem;
+}
+
+.treatments-page .treatment-card {
+  background: var(--white);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.treatments-page .treatment-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+}
+
+.treatments-page .treatment-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.treatments-page .treatment-details {
+  padding: 2rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.treatments-page .treatment-details h3 {
+  color: var(--primary-color);
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.treatments-page .treatment-details .price {
+  font-size: 2rem;
+  color: var(--secondary-color);
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.treatments-page .treatment-details .price span {
+  font-size: 1rem;
+  color: var(--light-text);
+  font-weight: 400;
+}
+
+.treatments-page .treatment-details .description {
+  color: var(--light-text);
+  margin-bottom: 1.5rem;
+  line-height: 1.7;
+  flex-grow: 1;
+}
+
+.treatments-page .treatment-meta {
+  margin-top: auto;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(0,0,0,0.08);
+}
+
+.treatments-page .treatment-meta p {
+  color: var(--light-text);
+  margin-bottom: 0.75rem;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.treatments-page .treatment-meta p:last-child {
+  margin-bottom: 0;
+}
+
+.treatments-page .treatment-meta i {
+  color: var(--accent-color);
+  font-size: 1.1rem;
+}
+
+/* FAQ Tab Content */
+.treatments-page .faq-content {
+  padding: 2rem 0;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.treatments-page .faq-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 2.5rem;
+}
+
+.treatments-page .faq-card {
+  background: var(--white);
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease;
+}
+
+.treatments-page .faq-card:hover {
+  transform: translateY(-5px);
+}
+
+.treatments-page .faq-card h3 {
+  color: var(--primary-color);
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.treatments-page .faq-card p {
+  color: var(--light-text);
+  line-height: 1.7;
+}
+
+/* Care Tab Content */
+.treatments-page .care-content {
+  padding: 2rem 0;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.treatments-page .care-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2.5rem;
+}
+
+.treatments-page .care-card {
+  background: var(--white);
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease;
+}
+
+.treatments-page .care-card:hover {
+  transform: translateY(-5px);
+}
+
+.treatments-page .care-card h3 {
+  color: var(--primary-color);
+  font-size: 1.4rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-weight: 600;
+}
+
+.treatments-page .care-card ul {
+  list-style: none;
+  padding: 0;
+}
+
+.treatments-page .care-card ul li {
+  padding-left: 2rem;
+  position: relative;
+  margin-bottom: 1.2rem;
+  color: var(--light-text);
+  line-height: 1.7;
+}
+
+.treatments-page .care-card ul li:last-child {
+  margin-bottom: 0;
+}
+
+.treatments-page .care-card ul li::before {
+  content: '✓';
+  color: var(--accent-color);
+  position: absolute;
+  left: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+/* Button Styles */
+.treatments-page .cta-button {
+  display: inline-block;
+  padding: 1rem 2.5rem;
+  background: var(--accent-color);
+  color: var(--white);
+  border: none;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  text-align: center;
+  margin-top: 2rem;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.treatments-page .cta-button:hover {
+  background: var(--secondary-color);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .treatments-page .page-hero {
+    padding: 4rem 0;
+  }
+
+  .treatments-page .page-hero h1 {
+    font-size: 2.5rem;
+  }
+
+  .treatments-page .page-hero p {
+    font-size: 1.1rem;
+  }
+
+  .treatments-page .tabs {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .treatments-page .tab {
+    width: 100%;
+    text-align: center;
+    padding: 1rem;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+  }
+
+  .treatments-page .tab.active {
+    background: rgba(var(--accent-color-rgb), 0.1);
+  }
+
+  .treatments-page .treatments-grid,
+  .treatments-page .faq-grid,
+  .treatments-page .care-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .treatments-page .treatment-details .price {
+    font-size: 1.8rem;
+  }
+
+  .treatments-page .treatment-category h2 {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .treatments-page .page-hero {
+    padding: 3rem 0;
+  }
+
+  .treatments-page .page-hero h1 {
+    font-size: 2rem;
+  }
+
+  .treatments-page .treatment-category h2 {
+    font-size: 1.8rem;
+  }
+
+  .treatments-page .tabs-container,
+  .treatments-page .treatments-content,
+  .treatments-page .faq-content,
+  .treatments-page .care-content {
+    padding: 0 1rem;
+  }
+
+  .treatments-page .treatment-details,
+  .treatments-page .faq-card,
+  .treatments-page .care-card {
+    padding: 1.5rem;
+  }
+}

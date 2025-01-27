@@ -1,10 +1,11 @@
-import React, { useEffect, useCallback } from 'react';
+import React, { useEffect, useCallback, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const Header = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const isHomePage = location.pathname === '/';
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const scrollToTop = useCallback(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -12,7 +13,6 @@ const Header = () => {
 
   const scrollToSection = useCallback((sectionId: string) => {
     if (!isHomePage) {
-      // Navigate to home and then scroll after a small delay
       navigate('/');
       setTimeout(() => {
         const element = document.getElementById(sectionId);
@@ -26,6 +26,7 @@ const Header = () => {
         element.scrollIntoView({ behavior: 'smooth' });
       }
     }
+    setIsMenuOpen(false);
   }, [isHomePage, navigate]);
 
   const handleHomeClick = useCallback((e: React.MouseEvent) => {
@@ -35,9 +36,9 @@ const Header = () => {
     } else {
       scrollToTop();
     }
+    setIsMenuOpen(false);
   }, [isHomePage, navigate, scrollToTop]);
 
-  // Handle initial scroll position when navigating with hash
   useEffect(() => {
     if (location.hash) {
       setTimeout(() => {
@@ -49,28 +50,64 @@ const Header = () => {
     }
   }, [location.hash]);
 
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+  }, [isMenuOpen]);
+
   return (
     <div className="header-container">
       <nav className="navbar">
         <div className="nav-links-left">
-          <a href="/" onClick={handleHomeClick}>Home</a>
+          <a href="/" onClick={handleHomeClick}>HOME</a>
           <a href="#about" onClick={(e) => {
             e.preventDefault();
             scrollToSection('about');
-          }}>About</a>
+          }}>ABOUT</a>
           <a href="#contact" onClick={(e) => {
             e.preventDefault();
             scrollToSection('contact');
-          }}>Contact</a>
+          }}>CONTACT</a>
         </div>
+
         <div className="logo-container">
           <a href="/" onClick={handleHomeClick}>
             <img src="/images/logo.png" alt="Doctors Advance Laser Clinic" />
           </a>
         </div>
+
         <div className="nav-links-right">
-          <Link to="/services" onClick={scrollToTop}>Services & Pricing</Link>
-          <Link to="/book" className="book-now-link" onClick={scrollToTop}>Book Now</Link>
+          <Link to="/services">SERVICES & PRICING</Link>
+          <Link to="/book" className="book-now-link">BOOK NOW</Link>
+        </div>
+
+        <div className="mobile-menu-button" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+          <div className={`burger-icon ${isMenuOpen ? 'open' : ''}`}>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+
+        <div className={`mobile-menu ${isMenuOpen ? 'mobile-open' : ''}`}>
+          <a href="/" onClick={handleHomeClick}>HOME</a>
+          <a href="#about" onClick={(e) => {
+            e.preventDefault();
+            scrollToSection('about');
+          }}>ABOUT</a>
+          <Link to="/services" onClick={() => { scrollToTop(); setIsMenuOpen(false); }}>
+            SERVICES & PRICING
+          </Link>
+          <a href="#contact" onClick={(e) => {
+            e.preventDefault();
+            scrollToSection('contact');
+          }}>CONTACT</a>
+          <Link to="/book" className="book-now-link" onClick={() => { scrollToTop(); setIsMenuOpen(false); }}>
+            BOOK NOW
+          </Link>
         </div>
       </nav>
     </div>

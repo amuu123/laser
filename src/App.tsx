@@ -4,6 +4,7 @@ import ServicesAndPricing from './pages/ServicesAndPricing';
 import BookNow from './pages/BookNow';
 import Header from './components/Header';
 import ScrollToTop from './components/ScrollToTop';
+import Treatments from './pages/Treatments';
 import './App.css';
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
       <ScrollToTop />
       <Routes>
         <Route path="/services" element={<ServicesAndPricing />} />
+        <Route path="/treatments" element={<Treatments />} />
         <Route path="/book" element={<BookNow />} />
         <Route path="/" element={<HomePage />} />
       </Routes>
@@ -57,29 +59,46 @@ function HomePage() {
       </section>
 
       <section className="services-showcase">
-        <div className="services-grid" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', flexDirection: 'row' }}>
-          <div className="service-item">
-            <i className="fas fa-bolt"></i>
-            <div className="service-text">Laser Hair Removal</div>
-          </div>
-          <div className="service-item">
-            <i className="fas fa-spray-can"></i>
-            <div className="service-text">Hydrofacial</div>
-          </div>
-          <div className="service-item">
-            <i className="fas fa-spa"></i>
-            <div className="service-text">Massage</div>
-          </div>
-          <div className="service-item">
-            <i className="fas fa-eraser"></i>
-            <div className="service-text">Tattoo Removal</div>
-          </div>
-          <Link to="/services" className="view-all-button">
+        <div className="services-container">
+          <h2 className="section-title">Our Treatments</h2>
+          <p className="section-subtitle">Experience excellence in aesthetic treatments</p>
+          <div className="services-grid">
             <div className="service-item">
-              <i className="fas fa-chevron-right"></i>
-              <div className="service-text">View All</div>
+              <div className="service-icon">
+                <i className="fas fa-bolt"></i>
+              </div>
+              <h3 className="service-title">Laser Hair Removal</h3>
+              <p className="service-description">Advanced technology for permanent hair reduction</p>
             </div>
-          </Link>
+            <div className="service-item">
+              <div className="service-icon">
+                <i className="fas fa-spray-can"></i>
+              </div>
+              <h3 className="service-title">Hydrofacial</h3>
+              <p className="service-description">Deep cleansing and skin rejuvenation</p>
+            </div>
+            <div className="service-item">
+              <div className="service-icon">
+                <i className="fas fa-spa"></i>
+              </div>
+              <h3 className="service-title">Massage</h3>
+              <p className="service-description">Relaxing therapeutic treatments</p>
+            </div>
+            <div className="service-item">
+              <div className="service-icon">
+                <i className="fas fa-eraser"></i>
+              </div>
+              <h3 className="service-title">Tattoo Removal</h3>
+              <p className="service-description">Safe and effective tattoo removal</p>
+            </div>
+            <Link to="/services" className="service-item view-all">
+              <div className="service-icon">
+                <i className="fas fa-chevron-right"></i>
+              </div>
+              <h3 className="service-title">View All Services</h3>
+              <p className="service-description">Explore our complete range</p>
+            </Link>
+          </div>
         </div>
       </section>
 
